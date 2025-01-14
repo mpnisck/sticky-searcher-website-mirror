@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import eslintConfigPrettier from "eslint-config-prettier";
 import globals from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -35,4 +36,5 @@ export default [
       ],
     },
   },
+  eslintConfigPrettier,
 ];
