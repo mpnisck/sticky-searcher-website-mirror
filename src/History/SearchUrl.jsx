@@ -1,16 +1,15 @@
 import PropTypes from "prop-types";
 
-export default function SearchUrl({ url, urlName, time }) {
+export default function SearchUrl({ title, url, time }) {
   return (
     <>
       <a
-        href="#"
+        href={title}
         className="flex items-center gap-[20px]"
+        target="_blank"
       >
-        <p className="w-[200px] truncate">{url}</p>
-        <span className="text-[#aaa] truncate text-sm font-light">
-          {urlName}
-        </span>
+        <p className="w-[200px] truncate">{title}</p>
+        <span className="text-[#aaa] truncate text-sm font-light">{url}</span>
       </a>
       <span className="w-[100px] text-[#aaa] text-sm">{time}</span>
     </>
@@ -18,7 +17,7 @@ export default function SearchUrl({ url, urlName, time }) {
 }
 
 SearchUrl.propTypes = {
+  title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  urlName: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
 };

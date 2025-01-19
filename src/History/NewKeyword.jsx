@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-export default function NewKeyword({ Keyword }) {
+export default function NewKeyword({ keyword }) {
   return (
-    <h3 className="text-left text-xl font-semibold py-[10px]">{Keyword}</h3>
+    <h3 className="text-left text-xl font-semibold py-[10px]">{keyword}</h3>
   );
 }
 
 NewKeyword.propTypes = {
-  Keyword: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
 };

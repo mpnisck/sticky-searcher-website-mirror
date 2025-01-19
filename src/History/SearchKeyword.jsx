@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-function TotalKeywordButton({ Keyword = "..." }) {
+function TotalKeywordButton({ keyword = "..." }) {
   return (
     <button className="w-[20%] truncate shadow px-[3px] rounded-[5px]">
-      {Keyword}
+      {keyword}
     </button>
   );
 }
@@ -28,5 +28,5 @@ SearchKeyword.propTypes = {
 };
 
 TotalKeywordButton.propTypes = {
-  Keyword: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
 };

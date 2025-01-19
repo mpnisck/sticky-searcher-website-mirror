@@ -19,8 +19,8 @@ export default function HistoryItem() {
         <ul className="w-full grid grid-cols-1 items-center gap-y-[15px] py-[20px] rounded-lg">
           <li className="w-full flex justify-between items-center gap-[30px]">
             <SearchUrl
-              url={"사용자의 검색환경을 개선해보자 🔎"}
-              urlName={"github.com"}
+              title={"사용자의 검색환경을 개선해보자 🔎"}
+              url={"github.com"}
               time={"오후 19:50"}
             />
           </li>
