@@ -1,5 +1,4 @@
 import DeleteButton from "../shared/DeleteButton";
-import TotalKeywordButton from "../shared/TotalKeywordButton";
 import SearchKeyword from "./SearchKeyword";
 import SearchUrl from "./SearchUrl";
 
@@ -26,10 +25,18 @@ export default function HistoryItem() {
             />
           </li>
           <li className="w-full flex gap-[15px]">
-            <SearchKeyword keywords={"keyword 1"} />
-            <SearchKeyword keywords={"keyword 2"} />
-            <SearchKeyword keywords={"keyword 3"} />
-            <TotalKeywordButton Keyword={"..."} />
+            <SearchKeyword
+              keywords={"keyword 1"}
+              keywordsTotal={30}
+            />
+            <SearchKeyword
+              keywords={"keyword 2"}
+              keywordsTotal={10}
+            />
+            <SearchKeyword
+              keywords={"keyword 3 keyword 1"}
+              keywordsTotal={1}
+            />
           </li>
         </ul>
         <DeleteButton />

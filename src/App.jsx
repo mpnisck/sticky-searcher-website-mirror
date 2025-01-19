@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Home from "./Home";
-import Empty from "./shared/empty";
+import Initial from "./shared/Initial";
 import Login from "./shared/login";
 
 const queryClient = new QueryClient();
@@ -17,8 +17,8 @@ function App() {
           element={<Home />}
         />
         <Route
-          path="/Empty"
-          element={<Empty />}
+          path="/Initial"
+          element={<Initial />}
         />
         <Route
           path="/login"

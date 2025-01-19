@@ -1,6 +1,6 @@
 export default function SearchSection() {
   return (
-    <div className="flex justify-between m-[20px] pb-[20px] border-b">
+    <div className="flex justify-between my-[20px] pb-[20px] border-b">
       <em className="block text-[#d71313] py-[5px]">
         warning: 최대 50개까지 저장 가능합니다.
       </em>

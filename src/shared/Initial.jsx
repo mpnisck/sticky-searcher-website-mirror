@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 import imgUrl from "../assets/emptyPage_search.png";
 
-export default function Empty() {
+export default function Initial() {
   return (
     <Link to="/">
       <div className="emptyScreen flex flex-col h-screen shadow-lg border rounded-2xl justify-center items-center">
