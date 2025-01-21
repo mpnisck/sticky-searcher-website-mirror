@@ -4,18 +4,24 @@ export default function SearchSection({ warningText, iconSrc }) {
   return (
     <div className="flex justify-between my-[20px] pb-[20px] border-b">
       <em className="block text-[#d71313] py-[5px]">{warningText}</em>
-      <input
-        type="text"
-        placeholder="텍스트를 입력해 주세요!"
-        className="w-[45%] border rounded-full text-sm text-[#333] px-[15px] relative"
-      />
-      <button className="w-[30px] h-[33px] absolute right-[85px]">
-        <img
-          src={iconSrc}
-          alt="input-search.png"
-          className="w-[20px]"
+      <label
+        htmlFor="text"
+        className="w-[50%] border flex justify-between items-center rounded-full "
+      >
+        <input
+          id="text"
+          type="text"
+          placeholder="텍스트를 입력해 주세요!"
+          className="w-full h-[100%] rounded-full font-normal text-sm text-[#333] px-[15px]"
         />
-      </button>
+        <button className="w-[10%] h-[30px] flex justify-center items-center">
+          <img
+            src={iconSrc}
+            alt="input-search.png"
+            className="w-[20px]"
+          />
+        </button>
+      </label>
     </div>
   );
 }
