@@ -13,7 +13,7 @@ export default function SearchKeyword({ keywords, keywordsTotal }) {
     <>
       <p className="bg-[#333] text-[#fff] truncate border w-[100%] h-[40px] px-[3px] leading-[37px] text-sm text-center rounded-full">
         {keywords}
-        <span className="inline text-[#333] text-xs bg-[#fff] p-[3px] ml-[5px] rounded-full">
+        <span className="inline text-[#333] text-xs bg-[#fff] px-[5px] py-[1px] ml-[5px] rounded-full">
           {keywordsTotal}
         </span>
       </p>
@@ -22,11 +22,11 @@ export default function SearchKeyword({ keywords, keywordsTotal }) {
   );
 }
 
-SearchKeyword.propTypes = {
-  keywords: PropTypes.string.isRequired,
-  keywordsTotal: PropTypes.number.isRequired,
+TotalKeywordButton.propTypes = {
+  keyword: PropTypes.string,
 };
 
-TotalKeywordButton.propTypes = {
-  keyword: PropTypes.string.isRequired,
+SearchKeyword.propTypes = {
+  keywords: PropTypes.string,
+  keywordsTotal: PropTypes.number,
 };
