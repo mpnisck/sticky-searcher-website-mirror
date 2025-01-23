@@ -1,11 +1,22 @@
 import PropTypes from "prop-types";
 
+import sample from "../../sample.json";
 import DeleteButton from "../shared/DeleteButton";
 import SearchKeyword from "./SearchKeyword";
 import SearchUrl from "./SearchUrl";
 import { TotalKeywordButton } from "./TotalKeywordButton";
 
 export default function HistoryItem({ keywords, onDragStart, onDrop }) {
+  const data = sample;
+  let siteUrl;
+  let siteName;
+  for (let i = 0; i < data.length; i++) {
+    siteUrl = data[i].siteTitle;
+  }
+  for (let i = 0; i < data.length; i++) {
+    siteName = data[i].url;
+  }
+
   return (
     <div
       className="text-left w-[100%] shadow-md rounded-[10px]"
@@ -34,10 +45,8 @@ export default function HistoryItem({ keywords, onDragStart, onDrop }) {
               <div>
                 <div className="flex justify-between items-center gap-[30px] text-center">
                   <SearchUrl
-                    title={
-                      "https://www.notion.so/Sticky-Searcher-177f13b58350802bbeeaedd8b1d09f68"
-                    }
-                    url={"www.notion.so"}
+                    title={siteUrl}
+                    url={siteName}
                     time={"time"}
                   />
                 </div>

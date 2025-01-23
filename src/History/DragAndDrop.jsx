@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 
-import sample from "../../sample.json";
 import NewKeywordButton from "../shared/NewKeywordButton";
 import KeywordGroup from "./KeywordGroup";
 
@@ -10,14 +9,11 @@ export default function DragAndDrop() {
     {
       id: 0,
       name: "New Keyword Group",
-      keywords: ["keyword1", "keyword2"],
-      count: [0, 2],
+      keywords: ["exampleData", "keyword2", "deisp"],
+      count: [],
     },
   ]);
 
-  const sampleData = sample;
-  console.log(sampleData);
-  console.log(sample.keywords);
   const startDrag = (event, groupIndex, keyword) => {
     dragPosition.current = { groupIndex, keyword };
   };

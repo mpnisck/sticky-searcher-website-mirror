@@ -1,33 +1,36 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
-export default function SearchUrl({ title, url }) {
-  const [time, setTimer] = useState("00:00:00");
-  const currentTimer = () => {
-    const date = new Date();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-    setTimer(`${hours}:${minutes}:${seconds}`);
+import sample from "../../sample.json";
+
+export default function SearchUrl() {
+  const options = {
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   };
+  const currentDate = new Intl.DateTimeFormat("ko-KR", options).format(
+    new Date(new Date().toISOString())
+  );
 
-  const startTimer = () => {
-    setInterval(currentTimer, 1000);
-  };
+  const data = sample;
 
-  startTimer(time);
+  const siteUrl = data[4].url;
+  const siteTitle = data[4].siteTitle;
 
   return (
     <>
       <a
-        href={title}
+        href={siteUrl}
         className="flex items-center gap-[20px]"
         target="_blank"
       >
-        <p className="w-[200px] truncate">{title}</p>
-        <span className="text-[#aaa] truncate text-sm font-light">{url}</span>
+        <p className="w-[200px] truncate">{siteTitle}</p>
+        <span className="w-[150px] text-[#aaa] truncate text-sm font-light">
+          {siteUrl}
+        </span>
       </a>
-      <span className="w-[120px] text-[#aaa] text-sm">{time}</span>
+      <span className="w-[120px] text-[#aaa] text-sm">{currentDate}</span>
     </>
   );
 }

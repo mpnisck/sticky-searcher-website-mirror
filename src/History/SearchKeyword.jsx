@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
 
+import sample from "../../sample.json";
+
 export default function SearchKeyword({ keywords, keywordsTotal }) {
+  const sampleData = sample;
+  console.log(sampleData[0]);
+
   return (
     <>
       <p className="bg-[#333] text-[#fff] truncate border w-[100%] h-[40px] px-[3px] leading-[37px] text-sm text-center rounded-full">
