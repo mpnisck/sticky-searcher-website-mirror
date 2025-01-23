@@ -1,14 +1,23 @@
 import { useRef, useState } from "react";
 
+import sample from "../../sample.json";
 import NewKeywordButton from "../shared/NewKeywordButton";
 import KeywordGroup from "./KeywordGroup";
 
 export default function DragAndDrop() {
   const dragPosition = useRef();
   const [list, setList] = useState([
-    { id: 0, name: "New Keyword Group", keywords: ["key", "key2"] },
+    {
+      id: 0,
+      name: "New Keyword Group",
+      keywords: ["keyword1", "keyword2"],
+      count: [0, 2],
+    },
   ]);
 
+  const sampleData = sample;
+  console.log(sampleData);
+  console.log(sample.keywords);
   const startDrag = (event, groupIndex, keyword) => {
     dragPosition.current = { groupIndex, keyword };
   };
@@ -24,10 +33,10 @@ export default function DragAndDrop() {
     );
     newList[groupIndex].keywords.push(keyword);
 
-    // 키워드의 카운트 -> 각각 정보를 map돎면서 순회
     dragPosition.current = null;
     setList(newList);
   };
+
   const newKeywordGroup = (groupName) => {
     const newGroupId = list.length + 1;
 

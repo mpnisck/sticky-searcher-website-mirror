@@ -12,7 +12,7 @@ export default function SearchSection({ warningText, iconSrc }) {
           <input
             id="text"
             type="text"
-            placeholder="텍스트를 입력해 주세요!"
+            placeholder="생성했던 키워드 그룹을 입력해 주세요!"
             className="w-full h-[100%] rounded-full font-normal text-sm text-[#333] px-[15px]"
           />
           <button className="w-[10%] h-[30px] flex justify-center items-center">

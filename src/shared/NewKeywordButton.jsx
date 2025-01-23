@@ -31,7 +31,6 @@ export default function NewKeywordButton({ addGroup }) {
         className="bg-[#333] text-[#fff] border w-[170px] h-[50px] rounded-[5px] my-[20px]"
         onClick={handleClick}
       >
-        {" "}
         New Keyword +
       </button>
     </>
@@ -39,5 +38,5 @@ export default function NewKeywordButton({ addGroup }) {
 }
 
 NewKeywordButton.propTypes = {
-  addGroup: PropTypes.string.isRequired,
+  addGroup: PropTypes.func.isRequired,
 };
