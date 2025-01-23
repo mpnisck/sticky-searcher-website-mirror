@@ -1,27 +1,21 @@
 import { useRef, useState } from "react";
 
+import NewKeywordButton from "../shared/NewKeywordButton";
 import KeywordGroup from "./KeywordGroup";
 
 export default function DragAndDrop() {
   const dragPosition = useRef();
   const [list, setList] = useState([
-    { id: 1, name: "Keyword 1", keywords: [] },
-    { id: 2, name: "Keyword 2", keywords: ["keyword1", "keyword2"] },
-    { id: 3, name: "Keyword 3", keywords: ["keyword3"] },
-    { id: 4, name: "Keyword 4", keywords: ["keyword4", "keyword5"] },
-    {
-      id: 5,
-      name: "Keyword 4",
-      keywords: ["keyword6", "keyword7", "keyword8"],
-    },
+    { id: 0, name: "New Keyword Group", keywords: ["key", "key2"] },
   ]);
 
-  const dragStart = (event, groupIndex, keyword) => {
+  const startDrag = (event, groupIndex, keyword) => {
     dragPosition.current = { groupIndex, keyword };
   };
 
   const drop = (event, groupIndex) => {
     event.preventDefault();
+
     const newList = [...list];
     const { groupIndex: dragGroupIndex, keyword } = dragPosition.current;
 
@@ -30,18 +24,35 @@ export default function DragAndDrop() {
     );
     newList[groupIndex].keywords.push(keyword);
 
+    // 키워드의 카운트 -> 각각 정보를 map돎면서 순회
     dragPosition.current = null;
     setList(newList);
+  };
+  const newKeywordGroup = (groupName) => {
+    const newGroupId = list.length + 1;
+
+    if (groupName.trim() === false) {
+      return null;
+    }
+
+    const newGroup = {
+      id: newGroupId,
+      name: groupName.trim(),
+      keywords: [],
+    };
+
+    setList((prevList) => [...prevList, newGroup]);
   };
 
   return (
     <>
+      <NewKeywordButton addGroup={newKeywordGroup} />
       {list.map((item, index) => (
         <KeywordGroup
           key={item.id}
-          keyword={item.name}
+          groupName={item.name}
           keywords={item.keywords}
-          onDragStart={(event, keyword) => dragStart(event, index, keyword)}
+          onDragStart={(event, keyword) => startDrag(event, index, keyword)}
           onDrop={(event) => drop(event, index)}
         />
       ))}

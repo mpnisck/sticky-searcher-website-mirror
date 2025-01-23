@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DeleteButton from "../shared/DeleteButton";
 import SearchKeyword from "./SearchKeyword";
 import SearchUrl from "./SearchUrl";
+import { TotalKeywordButton } from "./TotalKeywordButton";
 
 export default function HistoryItem({ keywords, onDragStart, onDrop }) {
   return (
@@ -12,7 +13,7 @@ export default function HistoryItem({ keywords, onDragStart, onDrop }) {
       onDragOver={(event) => event.preventDefault()}
     >
       <div className="flex justify-center items-center gap-[10px] bg-none rounded-[10px] border px-[10px] ">
-        <ul className="w-full grid grid-cols-1 items-center gap-y-[15px] py-[20px] rounded-lg">
+        <ul className="w-full grid grid-cols-1 items-center gap-y-[15px] py-[3rem] rounded-lg">
           {keywords.map((keywordItem, index) => (
             <li
               key={index}
@@ -31,18 +32,21 @@ export default function HistoryItem({ keywords, onDragStart, onDrop }) {
                 />
               </label>
               <div>
-                <div className="flex justify-between items-center gap-[30px]">
+                <div className="flex justify-between items-center gap-[30px] text-center">
                   <SearchUrl
-                    title={"사용자의 검색환경을 개선해보자 🔎"}
-                    url={"github.com"}
-                    time={"오후 19:50"}
+                    title={
+                      "https://www.notion.so/Sticky-Searcher-177f13b58350802bbeeaedd8b1d09f68"
+                    }
+                    url={"www.notion.so"}
+                    time={"time"}
                   />
                 </div>
                 <div className="flex justify-center items-center gap-[15px]">
                   <SearchKeyword
                     keywords={keywordItem}
-                    keywordsTotal={10}
+                    keywordsTotal={keywordItem.length}
                   />
+                  <TotalKeywordButton />
                   <DeleteButton />
                 </div>
               </div>
