@@ -1,17 +1,36 @@
 import PropTypes from "prop-types";
 
-export default function SearchUrl({ title, url, time }) {
+import sample from "../../sample.json";
+
+export default function SearchUrl() {
+  const options = {
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const currentDate = new Intl.DateTimeFormat("ko-KR", options).format(
+    new Date(new Date().toISOString())
+  );
+
+  const data = sample;
+
+  const siteUrl = data[4].url;
+  const siteTitle = data[4].siteTitle;
+
   return (
     <>
       <a
-        href={title}
+        href={siteUrl}
         className="flex items-center gap-[20px]"
         target="_blank"
       >
-        <p className="w-[200px] truncate">{title}</p>
-        <span className="text-[#aaa] truncate text-sm font-light">{url}</span>
+        <p className="w-[200px] truncate">{siteTitle}</p>
+        <span className="w-[150px] text-[#aaa] truncate text-sm font-light">
+          {siteUrl}
+        </span>
       </a>
-      <span className="w-[100px] text-[#aaa] text-sm">{time}</span>
+      <span className="w-[120px] text-[#aaa] text-sm">{currentDate}</span>
     </>
   );
 }

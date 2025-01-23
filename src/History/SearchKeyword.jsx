@@ -1,14 +1,11 @@
 import PropTypes from "prop-types";
 
-function TotalKeywordButton({ keyword = "..." }) {
-  return (
-    <button className="w-[20%] truncate shadow px-[3px] rounded-[5px]">
-      {keyword}
-    </button>
-  );
-}
+import sample from "../../sample.json";
 
 export default function SearchKeyword({ keywords, keywordsTotal }) {
+  const sampleData = sample;
+  console.log(sampleData[0]);
+
   return (
     <>
       <p className="bg-[#333] text-[#fff] truncate border w-[100%] h-[40px] px-[3px] leading-[37px] text-sm text-center rounded-full">
@@ -17,16 +14,12 @@ export default function SearchKeyword({ keywords, keywordsTotal }) {
           {keywordsTotal}
         </span>
       </p>
-      <TotalKeywordButton />
     </>
   );
 }
 
-TotalKeywordButton.propTypes = {
-  keyword: PropTypes.string,
-};
-
 SearchKeyword.propTypes = {
   keywords: PropTypes.string,
   keywordsTotal: PropTypes.number,
+  keyword: PropTypes.string,
 };
