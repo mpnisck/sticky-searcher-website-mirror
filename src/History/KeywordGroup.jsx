@@ -4,17 +4,17 @@ import HistoryItem from "./HistoryItem";
 import NewKeyword from "./NewKeyword";
 
 export default function KeywordGroup({
-  keyword,
+  groupName,
   keywords,
   onDragStart,
   onDrop,
 }) {
   return (
-    <div>
-      <NewKeyword keyword={keyword} />
+    <div className="newGroup">
+      <NewKeyword keyword={groupName} />
       <div className="flex justify-center items-center">
         <HistoryItem
-          keyword={keyword}
+          groupName={groupName}
           keywords={keywords}
           onDragStart={onDragStart}
           onDrop={onDrop}
@@ -25,7 +25,7 @@ export default function KeywordGroup({
 }
 
 KeywordGroup.propTypes = {
-  keyword: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
   keywords: PropTypes.array.isRequired,
   onDragStart: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
