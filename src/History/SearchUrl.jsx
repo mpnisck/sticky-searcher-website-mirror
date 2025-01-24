@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
-import sample from "../../sample.json";
-
-export default function SearchUrl() {
+export default function SearchUrl({ siteTitle, url, createdTime }) {
   const options = {
     month: "numeric",
     day: "numeric",
@@ -10,24 +8,19 @@ export default function SearchUrl() {
     minute: "numeric",
   };
   const currentDate = new Intl.DateTimeFormat("ko-KR", options).format(
-    new Date(new Date().toISOString())
+    new Date(createdTime)
   );
-
-  const data = sample;
-
-  const siteUrl = data[4].url;
-  const siteTitle = data[4].siteTitle;
 
   return (
     <>
       <a
-        href={siteUrl}
+        href={url}
         className="flex items-center gap-[20px]"
         target="_blank"
       >
         <p className="w-[200px] truncate">{siteTitle}</p>
         <span className="w-[150px] text-[#aaa] truncate text-sm font-light">
-          {siteUrl}
+          {url}
         </span>
       </a>
       <span className="w-[120px] text-[#aaa] text-sm">{currentDate}</span>
@@ -36,7 +29,7 @@ export default function SearchUrl() {
 }
 
 SearchUrl.propTypes = {
-  title: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
+  createdTime: PropTypes.string.isRequired,
 };
