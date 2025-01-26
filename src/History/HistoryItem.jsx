@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 import DeleteButton from "../shared/DeleteButton";
-import SearchKeyword from "./SearchKeyword";
 import SearchUrl from "./SearchUrl";
 import { TotalKeywordButton } from "./TotalKeywordButton";
 
@@ -31,16 +30,7 @@ export default function HistoryItem({ history, onDragStart }) {
           />
         </div>
         <div className="flex justify-center items-center gap-[15px]">
-          {history.keywords.map(({ keyword, count }, index) => {
-            return (
-              <SearchKeyword
-                key={index}
-                keyword={keyword}
-                count={count}
-              />
-            );
-          })}
-          <TotalKeywordButton />
+          <TotalKeywordButton history={history} />
           <DeleteButton />
         </div>
       </div>
