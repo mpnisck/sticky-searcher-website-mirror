@@ -60,7 +60,7 @@ export default function DragAndDrop() {
       {historyGroups.map((historyGroup, historyGroupIndex) => (
         <KeywordGroup
           key={historyGroup.id}
-          changeGroupName={historyGroups}
+          addedGroupName={historyGroups}
           groupName={historyGroup.name}
           historyGroup={historyGroup}
           onDragStart={(history) => startDrag(historyGroupIndex, history)}
