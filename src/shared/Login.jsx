@@ -1,5 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 import imgUrl from "../assets/sticky-seacher-logo.png";
 import { app } from "../firebase/firebase";
@@ -16,13 +15,12 @@ export default function Login() {
     const accessToken = user.accessToken;
 
     localStorage.setItem("userEmail", email);
-    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("userAccessToken", accessToken);
 
+    // eslint-disable-next-line no-unused-vars
     const userEmail = window.localStorage.getItem("userEmail");
-    const userAccessToken = window.localStorage.getItem("accessToken");
-
-    document.write(userEmail);
-    document.write(userAccessToken);
+    // eslint-disable-next-line no-unused-vars
+    const userAccessToken = window.localStorage.getItem("userAccessToken");
   };
 
   return (
