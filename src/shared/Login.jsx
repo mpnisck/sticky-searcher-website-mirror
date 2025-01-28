@@ -17,10 +17,8 @@ export default function Login() {
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userAccessToken", accessToken);
 
-    // eslint-disable-next-line no-unused-vars
-    const userEmail = window.localStorage.getItem("userEmail");
-    // eslint-disable-next-line no-unused-vars
-    const userAccessToken = window.localStorage.getItem("userAccessToken");
+    window.localStorage.getItem("userEmail");
+    window.localStorage.getItem("userAccessToken");
   };
 
   return (
