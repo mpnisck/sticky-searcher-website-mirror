@@ -10,6 +10,10 @@ export default function ChangeGroupName({ defaultGroupName, changeGroupName }) {
   }
 
   function handleFixGroupName(event) {
+    if (inputText.length === 0) {
+      return;
+    }
+
     if (event.key === "Enter") {
       changeGroupName[changeGroupName.length - 1].name = inputText;
       setIsChangeName(false);
