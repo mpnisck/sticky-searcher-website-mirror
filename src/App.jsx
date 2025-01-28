@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import Initial from "./shared/Initial";
-import Login from "./shared/login";
+import Login from "./shared/Login";
 
 const queryClient = new QueryClient();
 
