@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
 import sample from "../../sample.json";
-import NewKeywordButton from "../shared/NewKeywordButton";
+import AddGroupButton from "../shared/AddGroupButton";
 import KeywordGroup from "./KeywordGroup";
 
 export default function DragAndDrop() {
@@ -56,10 +56,11 @@ export default function DragAndDrop() {
 
   return (
     <>
-      <NewKeywordButton addGroup={createHistoryGroup} />
+      <AddGroupButton addGroup={createHistoryGroup} />
       {historyGroups.map((historyGroup, historyGroupIndex) => (
         <KeywordGroup
           key={historyGroup.id}
+          changeGroupName={historyGroups}
           groupName={historyGroup.name}
           historyGroup={historyGroup}
           onDragStart={(history) => startDrag(historyGroupIndex, history)}

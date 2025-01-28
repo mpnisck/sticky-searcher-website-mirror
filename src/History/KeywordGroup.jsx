@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 
+import ChangeGroupName from "./ChangeGroupName";
 import HistoryItem from "./HistoryItem";
-import NewKeyword from "./NewKeyword";
 
 export default function KeywordGroup({
+  changeGroupName,
   groupName,
   historyGroup,
   onDragStart,
@@ -11,7 +12,10 @@ export default function KeywordGroup({
 }) {
   return (
     <div className="newGroup">
-      <NewKeyword groupName={groupName} />
+      <ChangeGroupName
+        defaultGroupName={groupName}
+        changeGroupName={changeGroupName}
+      />
       <div className="flex justify-center items-center">
         <div
           className="text-left w-[100%] shadow-md rounded-[10px]"
@@ -39,6 +43,7 @@ export default function KeywordGroup({
 }
 
 KeywordGroup.propTypes = {
+  changeGroupName: PropTypes.array.isRequired,
   groupName: PropTypes.string.isRequired,
   historyGroup: PropTypes.object.isRequired,
   onDragStart: PropTypes.func.isRequired,
