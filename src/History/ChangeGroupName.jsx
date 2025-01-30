@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-export default function ChangeGroupName({ initialGroupName, addedGroupName }) {
+export default function ChangeGroupName({
+  initialGroupName,
+  addedGroupName,
+  setAddedGroupName,
+}) {
   const [inputText, setInputText] = useState(initialGroupName);
   const [isChangeName, setIsChangeName] = useState(true);
+  const [prevGroupName, setPrevGroupName] = useState("");
 
   const defaultGroupName = addedGroupName[0].name;
+  const copiedPrevGroupName = [...addedGroupName];
+  const findGroupIndex = copiedPrevGroupName.findIndex(
+    (group) => group.name === prevGroupName
+  );
 
   useEffect(() => {
     if (inputText === defaultGroupName) {
@@ -23,15 +32,17 @@ export default function ChangeGroupName({ initialGroupName, addedGroupName }) {
     }
 
     if (event.key === "Enter") {
-      addedGroupName[addedGroupName.length - 1].name = inputText;
+      copiedPrevGroupName[findGroupIndex].name = inputText;
+      setAddedGroupName(copiedPrevGroupName);
       setIsChangeName(false);
     }
   }
 
-  function handleChangeGroupName() {
+  function handleChangeGroupName(event) {
     if (inputText === defaultGroupName) {
       return;
     }
+    setPrevGroupName(event.target.innerText);
     setIsChangeName(true);
   }
 
@@ -61,4 +72,5 @@ export default function ChangeGroupName({ initialGroupName, addedGroupName }) {
 ChangeGroupName.propTypes = {
   initialGroupName: PropTypes.string.isRequired,
   addedGroupName: PropTypes.array.isRequired,
+  setAddedGroupName: PropTypes.func.isRequired,
 };
