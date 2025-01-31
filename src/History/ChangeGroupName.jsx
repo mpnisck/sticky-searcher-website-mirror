@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
+import { useUserId } from "../context/userIdContext";
+import { updateGroupName } from "../firebase/group";
+
 export default function ChangeGroupName({
   initialGroupName,
   addedGroupName,
@@ -16,6 +19,8 @@ export default function ChangeGroupName({
     (group) => group.name === prevGroupName
   );
 
+  const { userId } = useUserId();
+
   useEffect(() => {
     if (inputText === defaultGroupName) {
       setIsChangeName(false);
@@ -26,13 +31,19 @@ export default function ChangeGroupName({
     setInputText(event.target.value);
   }
 
-  function handleFixGroupName(event) {
+  async function handleFixGroupName(event) {
     if (inputText.length === 0) {
       return;
     }
 
     if (event.key === "Enter") {
       copiedPrevGroupName[findGroupIndex].name = inputText;
+
+      const groupId = copiedPrevGroupName[findGroupIndex].id;
+      const groupName = copiedPrevGroupName[findGroupIndex].name;
+
+      await updateGroupName(userId, groupId, groupName);
+
       setAddedGroupName(copiedPrevGroupName);
       setIsChangeName(false);
     }

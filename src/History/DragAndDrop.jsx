@@ -1,18 +1,33 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import sample from "../../sample.json";
+import { useUserId } from "../context/userIdContext";
+import { updateGroupsAndHistoriesAfterDragAndDrop } from "../firebase/afterDragAndDrop";
+import { getHistoryGroups } from "../firebase/getHistoryGroups";
+import { addEmptyGroup } from "../firebase/group";
 import AddGroupButton from "../shared/AddGroupButton";
 import KeywordGroup from "./KeywordGroup";
 
 export default function DragAndDrop() {
   const dragPosition = useRef();
-  const [historyGroups, setHistoryGroups] = useState([
-    {
-      id: 0,
-      name: "New Keyword Group(default)",
-      histories: sample,
-    },
-  ]);
+  const [historyGroups, setHistoryGroups] = useState([]);
+  const { userId } = useUserId();
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function initHistoryGroups() {
+      const groups = await getHistoryGroups(userId);
+      setHistoryGroups(groups);
+    }
+
+    if (!ignore && userId !== "") {
+      initHistoryGroups();
+    }
+
+    return () => {
+      ignore = true;
+    };
+  }, [userId]);
 
   const startDrag = (historyGroupIndex, history) => {
     dragPosition.current = {
@@ -21,7 +36,7 @@ export default function DragAndDrop() {
     };
   };
 
-  const drop = (event, nextHistoryGroupIndex, historyGroups) => {
+  async function drop(event, nextHistoryGroupIndex, historyGroups) {
     event.preventDefault();
 
     const newHistoryGroups = [...historyGroups];
@@ -35,24 +50,23 @@ export default function DragAndDrop() {
     newHistoryGroups[nextHistoryGroupIndex].histories.push(targetHistory);
 
     dragPosition.current = null;
+
+    await updateGroupsAndHistoriesAfterDragAndDrop(userId, newHistoryGroups);
+
     setHistoryGroups(newHistoryGroups);
-  };
+  }
 
-  const createHistoryGroup = (groupName) => {
-    const newGroupId = historyGroups.length + 1;
-
-    if (groupName.trim() === false) {
-      return null;
-    }
+  async function createHistoryGroup(groupName) {
+    const newGroupId = await addEmptyGroup(userId, groupName);
 
     const newGroup = {
       id: newGroupId,
-      name: groupName.trim(),
+      name: groupName,
       histories: [],
     };
 
     setHistoryGroups((prev) => [...prev, newGroup]);
-  };
+  }
 
   return (
     <>
