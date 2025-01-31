@@ -1,9 +1,13 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 import imgUrl from "../assets/sticky-seacher-logo.png";
+import { useUserId } from "../context/userIdContext";
 import { app } from "../firebase/firebase";
+import { addNewUserAndDefaultGroup, getUser } from "../firebase/user";
 
 export default function Login() {
+  const { setUserId } = useUserId();
+
   const auth = getAuth(app);
   const authData = async () => {
     const provider = new GoogleAuthProvider();
@@ -14,11 +18,15 @@ export default function Login() {
     const email = user.email;
     const accessToken = user.accessToken;
 
+    let userId = await getUser(email);
+    if (!userId) {
+      userId = await addNewUserAndDefaultGroup(email);
+    }
+
+    setUserId(userId);
+
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userAccessToken", accessToken);
-
-    window.localStorage.getItem("userEmail");
-    window.localStorage.getItem("userAccessToken");
   };
 
   return (
