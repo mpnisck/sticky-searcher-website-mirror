@@ -9,11 +9,17 @@ export async function getHistoryGroups(userId) {
 
   const groupsQuerySnapshot = await getDocs(groupsRef);
   groupsQuerySnapshot.forEach((groupDoc) => {
-    groups.push({
+    const groupData = {
       id: groupDoc.id,
       name: groupDoc.data().name,
       histories: [],
-    });
+    };
+
+    if (groupDoc.id === "default") {
+      groups.unshift(groupData);
+    } else {
+      groups.push(groupData);
+    }
   });
 
   for (let i = 0; i < groups.length; i += 1) {
