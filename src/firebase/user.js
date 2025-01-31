@@ -26,9 +26,9 @@ export async function addNewUserAndDefaultGroup(email) {
 
 export async function getUser(email) {
   const usersRef = collection(db, "users");
-  const q = query(usersRef, where("email", "==", email));
+  const userWithEmailQuery = query(usersRef, where("email", "==", email));
 
-  const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(userWithEmailQuery);
   const userIdList = [];
   if (querySnapshot.empty) {
     return null;
