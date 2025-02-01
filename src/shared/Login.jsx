@@ -1,4 +1,5 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import imgUrl from "../assets/sticky-seacher-logo.png";
 import { useUserId } from "../context/userIdContext";
@@ -7,6 +8,7 @@ import { addNewUserAndDefaultGroup, getUser } from "../firebase/user";
 
 export default function Login() {
   const { setUserId } = useUserId();
+  const navigate = useNavigate();
 
   const auth = getAuth(app);
   const authData = async () => {
@@ -27,6 +29,8 @@ export default function Login() {
 
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userAccessToken", accessToken);
+
+    navigate("/");
   };
 
   return (
