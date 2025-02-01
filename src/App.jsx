@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Home from "./Home";
+import ProtectedRoute from "./ProtectedRoute";
 import { UserIdProvider } from "./context/userIdContext";
 import Initial from "./shared/Initial";
 import Login from "./shared/Login";
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home />}
+            element={<ProtectedRoute element={<Home />} />}
           />
           <Route
             path="/Initial"
