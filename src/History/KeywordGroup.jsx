@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { useUserId } from "../context/userIdContext";
+import { deleteGroup } from "../firebase/group";
 import ChangeGroupName from "./ChangeGroupName";
 import HistoryItem from "./HistoryItem";
 
@@ -10,7 +12,10 @@ export default function KeywordGroup({
   historyGroup,
   onDragStart,
   onDrop,
+  setHistoryGroups,
 }) {
+  const { userId } = useUserId();
+  const targetGroupId = historyGroup.id;
   return (
     <div className="newGroup h-full relative">
       <div>
@@ -33,15 +38,30 @@ export default function KeywordGroup({
                     history={history}
                     onDragStart={onDragStart}
                     onDrop={onDrop}
+                    groupId={historyGroup.id}
+                    setHistoryGroups={setHistoryGroups}
                   />
                 );
               })}
             </ul>
           </div>
         </div>
-        <button className=" w-DelBtnW h-DelBtnH rounded-sm hover:bg-[#ddd] absolute right-[10px] top-[10px] text-subPrimary1">
-          X
-        </button>
+        {targetGroupId !== "default" && (
+          <button
+            onClick={() => {
+              if (targetGroupId === "default") {
+                return;
+              }
+              deleteGroup(userId, targetGroupId);
+              setHistoryGroups((prevGroups) =>
+                prevGroups.filter((preGroup) => preGroup.id !== targetGroupId)
+              );
+            }}
+            className=" w-DelBtnW h-DelBtnH rounded-sm hover:bg-[#ddd] absolute right-[10px] top-[10px] text-subPrimary1"
+          >
+            X
+          </button>
+        )}
       </div>
     </div>
   );
@@ -54,4 +74,5 @@ KeywordGroup.propTypes = {
   historyGroup: PropTypes.object.isRequired,
   onDragStart: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  setHistoryGroups: PropTypes.func.isRequired,
 };
