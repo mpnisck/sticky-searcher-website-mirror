@@ -1,4 +1,11 @@
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 
 import { db } from "./firebase";
 
@@ -22,4 +29,43 @@ export async function updateGroupName(userId, groupId, newName) {
   await updateDoc(groupDocRef, {
     name: newName,
   });
+}
+
+export async function deleteGroup(userId, groupId) {
+  if (groupId === "default") {
+    throw Error("default group은 삭제할 수 없습니다.");
+  }
+
+  const historyIds = [];
+
+  const historiesRef = collection(
+    db,
+    "users",
+    userId,
+    "groups",
+    groupId,
+    "histories"
+  );
+  const historiesQuerySnapshot = await getDocs(historiesRef);
+  historiesQuerySnapshot.forEach((historyDoc) => {
+    historyIds.push(historyDoc.id);
+  });
+
+  for (const historyId of historyIds) {
+    const historyDocRef = doc(
+      db,
+      "users",
+      userId,
+      "groups",
+      groupId,
+      "histories",
+      historyId
+    );
+
+    await deleteDoc(historyDocRef);
+  }
+
+  const GroupDocRef = doc(db, "users", userId, "groups", groupId);
+
+  await deleteDoc(GroupDocRef);
 }
