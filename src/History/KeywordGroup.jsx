@@ -15,6 +15,7 @@ export default function KeywordGroup({
   setHistoryGroups,
 }) {
   const { userId } = useUserId();
+  const targetGroupId = historyGroup.id;
   return (
     <div className="newGroup h-full relative">
       <div>
@@ -45,18 +46,22 @@ export default function KeywordGroup({
             </ul>
           </div>
         </div>
-        <button
-          onClick={() => {
-            const targetGroupId = historyGroup.id;
-            deleteGroup(userId, targetGroupId);
-            setHistoryGroups((prevGroups) =>
-              prevGroups.filter((preGroup) => preGroup.id !== targetGroupId)
-            );
-          }}
-          className=" w-DelBtnW h-DelBtnH rounded-sm hover:bg-[#ddd] absolute right-[10px] top-[10px] text-subPrimary1"
-        >
-          X
-        </button>
+        {targetGroupId !== "default" && (
+          <button
+            onClick={() => {
+              if (targetGroupId === "default") {
+                return;
+              }
+              deleteGroup(userId, targetGroupId);
+              setHistoryGroups((prevGroups) =>
+                prevGroups.filter((preGroup) => preGroup.id !== targetGroupId)
+              );
+            }}
+            className=" w-DelBtnW h-DelBtnH rounded-sm hover:bg-[#ddd] absolute right-[10px] top-[10px] text-subPrimary1"
+          >
+            X
+          </button>
+        )}
       </div>
     </div>
   );
