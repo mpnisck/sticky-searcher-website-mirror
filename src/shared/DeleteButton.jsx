@@ -1,7 +1,13 @@
+import iconUrl from "../assets/delete_icon.png";
+
 export default function DeleteButton() {
   return (
-    <button className="bg-[#333] text-[#fff] border w-[40%] h-[45px] rounded-full m-[15px] px-[15px]">
-      Delete
+    <button className="flex justify-center items-center hover:bg-[#eee] rounded-full text-Primary w-DelBtnW h-DelBtnH">
+      <img
+        src={iconUrl}
+        alt="sticky-seacher-logo"
+        className="w-[25px]"
+      />
     </button>
   );
 }

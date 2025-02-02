@@ -8,7 +8,7 @@ export default function AddGroupButton({ addGroup }) {
   return (
     <>
       <button
-        className="bg-[#333] col-span-2 text-[#fff] border w-[170px] h-[50px] rounded-[5px] my-[20px]"
+        className="col-span-2 w-btnW btn rounded-full bg-primary text-subPrimary2"
         onClick={handleAddGroup}
       >
         Add Group +
