@@ -66,12 +66,12 @@ export default function ChangeGroupName({
           value={inputText}
           onChange={handleChange}
           onKeyDown={handleFixGroupName}
-          className="input input-ghost w-full"
+          className="input input-sm text-lg font-semibold w-full"
         />
       ) : (
         <div
           onClick={handleChangeGroupName}
-          className="flex"
+          className="flex mb-[10px] text-lg font-semibold"
         >
           {inputText}
         </div>
