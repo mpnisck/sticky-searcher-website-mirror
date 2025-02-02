@@ -76,6 +76,7 @@ export default function DragAndDrop() {
           key={historyGroup.id}
           addedGroupName={historyGroups}
           setAddedGroupName={setHistoryGroups}
+          setHistoryGroups={setHistoryGroups}
           groupName={historyGroup.name}
           historyGroup={historyGroup}
           onDragStart={(history) => startDrag(historyGroupIndex, history)}
