@@ -10,6 +10,7 @@ export default function KeywordGroup({
   historyGroup,
   onDragStart,
   onDrop,
+  setHistoryGroups,
 }) {
   return (
     <div className="newGroup h-full relative">
@@ -33,6 +34,8 @@ export default function KeywordGroup({
                     history={history}
                     onDragStart={onDragStart}
                     onDrop={onDrop}
+                    groupId={historyGroup.id}
+                    setHistoryGroups={setHistoryGroups}
                   />
                 );
               })}
@@ -54,4 +57,5 @@ KeywordGroup.propTypes = {
   historyGroup: PropTypes.object.isRequired,
   onDragStart: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
+  setHistoryGroups: PropTypes.func.isRequired,
 };
