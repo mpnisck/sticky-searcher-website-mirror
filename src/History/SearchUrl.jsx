@@ -18,8 +18,8 @@ export default function SearchUrl({ siteTitle, url, createdTime }) {
         className="flex items-center gap-[20px]"
         target="_blank"
       >
-        <p className="w-[200px] truncate">{siteTitle}</p>
-        <span className="w-[150px] text-[#aaa] truncate text-sm font-light">
+        <p className="w-[160px] truncate">{siteTitle}</p>
+        <span className="w-[120px] text-[#aaa] truncate text-sm font-light">
           {url}
         </span>
       </a>

@@ -6,9 +6,9 @@ export function TotalKeywordButton({ history }) {
   const numberOfKeywords = history.keywords.length;
 
   return (
-    <div className="collapse collapse-arrow bg-base-200">
+    <div className="collapse w-[100%] rounded-[5px] collapse-arrow bg-base-200">
       <input type="checkbox" />
-      <div className="collapse-title flex">
+      <div className="collapse-title flex px-[10px]">
         {history.keywords.map(({ keyword, count }, index) => {
           return (
             index < 3 && (
@@ -21,8 +21,8 @@ export function TotalKeywordButton({ history }) {
           );
         })}
       </div>
-      <div className="collapse-content">
-        <div className="flex justify-center items-center">
+      <div className="collapse-content px-[10px]">
+        <div className="flex flex-wrap gap-[5px] items-center">
           {numberOfKeywords >= 4 ? (
             history.keywords.map(({ keyword, count }, index) => {
               return (

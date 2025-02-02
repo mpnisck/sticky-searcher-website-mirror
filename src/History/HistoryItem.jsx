@@ -7,32 +7,24 @@ import { TotalKeywordButton } from "./TotalKeywordButton";
 export default function HistoryItem({ history, onDragStart }) {
   return (
     <li
-      className="w-full flex flex-row justify-evenly items-center gap-[10px]"
+      className="flex flex-row justify-evenly w-[100%] items-center gap-[10px]"
       draggable
       onDragStart={() => onDragStart(history)}
     >
-      <label
-        htmlFor="yellow-checkbox"
-        className="flex justify-center items-center m-[10px]"
-      >
-        <input
-          id="yellow-checkbox"
-          type="checkbox"
-          className="w-[20px] h-[20px]"
-        />
-      </label>
-      <div>
-        <div className="flex justify-between items-center gap-[30px] text-center">
-          <SearchUrl
-            siteTitle={history.siteTitle}
-            url={history.url}
-            createdTime={history.createdTime}
-          />
+      <div className="flex justify-center items-center gap-[20px]">
+        <div>
+          <div className="flex items-center gap-[30px] text-left">
+            <SearchUrl
+              siteTitle={history.siteTitle}
+              url={history.url}
+              createdTime={history.createdTime}
+            />
+          </div>
+          <div className="flex items-center gap-[15px]">
+            <TotalKeywordButton history={history} />
+          </div>
         </div>
-        <div className="flex justify-center items-center gap-[15px]">
-          <TotalKeywordButton history={history} />
-          <DeleteButton />
-        </div>
+        <DeleteButton />
       </div>
     </li>
   );

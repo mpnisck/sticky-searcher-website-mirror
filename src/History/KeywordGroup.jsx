@@ -12,20 +12,20 @@ export default function KeywordGroup({
   onDrop,
 }) {
   return (
-    <div className="newGroup">
-      <ChangeGroupName
-        initialGroupName={groupName}
-        addedGroupName={addedGroupName}
-        setAddedGroupName={setAddedGroupName}
-      />
-      <div className="flex justify-center items-center">
+    <div className="newGroup h-full relative">
+      <div>
         <div
-          className="text-left w-[100%] shadow-md rounded-[10px]"
+          className="w-[100%] shadow rounded-[10px] border p-[20px] sticky z-0"
           onDrop={onDrop}
           onDragOver={(event) => event.preventDefault()}
         >
-          <div className="flex justify-center items-center gap-[10px] bg-none rounded-[10px] border px-[10px] ">
-            <ul className="w-full grid grid-cols-1 items-center gap-y-[15px] py-[3rem] rounded-lg">
+          <ChangeGroupName
+            initialGroupName={groupName}
+            addedGroupName={addedGroupName}
+            setAddedGroupName={setAddedGroupName}
+          />
+          <div className="gap-[10px]">
+            <ul className="pt-[30px]">
               {historyGroup.histories.map((history, historyIdex) => {
                 return (
                   <HistoryItem
@@ -39,6 +39,9 @@ export default function KeywordGroup({
             </ul>
           </div>
         </div>
+        <button className=" w-DelBtnW h-DelBtnH rounded-sm hover:bg-[#ddd] absolute right-[10px] top-[10px] text-subPrimary1">
+          X
+        </button>
       </div>
     </div>
   );
