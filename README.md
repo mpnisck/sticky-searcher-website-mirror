@@ -7,8 +7,8 @@
 
 # 링크
 
-[Sticky Searcher 웹사이트](https://github.com/Sticky-Seacher/sticky-searcher-website/tree/docs/README?tab=readme-ov-file#sticky-searcher) |
-[Sticky Searcher 확장프로그램](https://github.com/Sticky-Seacher/sticky-searcher-extension/tree/docs/README?tab=readme-ov-file#sticky-searcher)
+- [확장 프로그램 리드미](https://github.com/Sticky-Seacher/sticky-searcher-extension?tab=readme-ov-file#sticky-searcher) | [다운로드 바로가기](https://chromewebstore.google.com/detail/sticky-searcher/hgffglicdkekapoilckejhebgopacdld?hl=ko&utm_source=ext_sidebar) </br>
+- [웹 사이트 리드미](https://github.com/Sticky-Seacher/sticky-searcher-website?tab=readme-ov-file#sticky-searcher) | [웹 사이트 바로가기](https://stickysearcher.site/)
 
 # 목차
 
@@ -21,7 +21,7 @@
   - [Frontend](#frontend)
   - [Backend](#backend)
 - [4. 개발 과정](#4-%EA%B0%9C%EB%B0%9C-%EA%B3%BC%EC%A0%95)
-  - [멀티 하이라이팅](#%EB%A9%80%ED%8B%B0-%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8C%85)
+  - [검색어 멀티 하이라이팅](#%EA%B2%80%EC%83%89%EC%96%B4-%EB%A9%80%ED%8B%B0-%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8C%85)
     - [사용자가 보고 있는 페이지를 조작할 수 있는 방법 - [content script 사용]](#%EC%82%AC%EC%9A%A9%EC%9E%90%EA%B0%80-%EB%B3%B4%EA%B3%A0-%EC%9E%88%EB%8A%94-%ED%8E%98%EC%9D%B4%EC%A7%80%EB%A5%BC-%EC%A1%B0%EC%9E%91%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%B0%A9%EB%B2%95---content-script-%EC%82%AC%EC%9A%A9)
     - [대상 텍스트 찾기](#%EB%8C%80%EC%83%81-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%B0%BE%EA%B8%B0)
       - [타이밍 - [onCompleted이벤트와 sendMessage 사용]](#%ED%83%80%EC%9D%B4%EB%B0%8D---oncompleted%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%99%80-sendmessage-%EC%82%AC%EC%9A%A9)
@@ -36,9 +36,9 @@
     - [해결](#%ED%95%B4%EA%B2%B0)
     - [해결 전 코드](#%ED%95%B4%EA%B2%B0-%EC%A0%84-%EC%BD%94%EB%93%9C)
     - [해결 후 코드](#%ED%95%B4%EA%B2%B0-%ED%9B%84-%EC%BD%94%EB%93%9C)
-  - [검색 리스트 드래그앤드롭 기능 구현 순서 - [draagable 속성 + useRef]](#%EA%B2%80%EC%83%89-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%93%9C%EB%9E%98%EA%B7%B8%EC%95%A4%EB%93%9C%EB%A1%AD-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%EC%88%9C%EC%84%9C---draagable-%EC%86%8D%EC%84%B1--useref)
+  - [검색 리스트 드래그앤드롭 기능 구현 순서 - [draggable 속성 + useRef]](#%EA%B2%80%EC%83%89-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%93%9C%EB%9E%98%EA%B7%B8%EC%95%A4%EB%93%9C%EB%A1%AD-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%EC%88%9C%EC%84%9C---draggable-%EC%86%8D%EC%84%B1--useref)
     - [마우스 이벤트 처리](#%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B2%98%EB%A6%AC)
-    - [마우스 이벤트 속성 draagable](#%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%86%8D%EC%84%B1-draagable)
+    - [마우스 이벤트 속성 draggable](#%EB%A7%88%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%86%8D%EC%84%B1-draggable)
     - [onDragEnter / onDragStart / dragPosition 속성이란?](#ondragenter--ondragstart--dragposition-%EC%86%8D%EC%84%B1%EC%9D%B4%EB%9E%80)
     - [드래그 앤 드롭에서 useRef() 사용하기](#%EB%93%9C%EB%9E%98%EA%B7%B8-%EC%95%A4-%EB%93%9C%EB%A1%AD%EC%97%90%EC%84%9C-useref-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
     - [상황](#%EC%83%81%ED%99%A9-1)
@@ -81,8 +81,8 @@
 ### Frontend
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
-<img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=React Router&logoColor=white">
-<img src="https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=Tailwind CSS&logoColor=white">
+<img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=react&logoColor=white" />
+<img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
 <img src="https://img.shields.io/badge/DaisyUI-1AD1A5?style=for-the-badge&logo=DaisyUI&logoColor=white">
 <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white">
 
@@ -92,9 +92,13 @@
 
 # 4. 개발 과정
 
-## 멀티 하이라이팅
+## 검색어 멀티 하이라이팅
 
-멀티 하이라이팅 기능은 사용자가 보고 있는 페이지에서 여러 단어들을 각 단어 별로 하이라이팅해 시각적인 분류를 돕는 기능입니다. content script 영역에 접근해서 사용자가 보고 있는 페이지를 수정하고, onCompleted이벤트와 sendMessage를 사용하여 적절한 타이밍에 작업을 시작했습니다. NodeIterator를 사용해 DOM 트리를 탐색하고 원하는 텍스트만 텍스트 노드로 만들어서 요소에 삽입한 후 기존의 텍스트를 제거하는 방식으로 작업을 진행했습니다.
+검색어 멀티 하이라이팅 기능은 사용자가 보고 있는 웹 페이지의 텍스트를 각 단어별로 시각적으로 분류해 강조 표시하는 기능입니다.<br>
+• content script에서 페이지에 접근한 뒤, onCompleted 이벤트와 sendMessage를 활용해 작업 시작 시점을 제어<br>
+• NodeIterator로 DOM 트리를 탐색하여 필요한 텍스트만 필터링<br>
+• 텍스트 노드로 재구성하여 삽입하고 기존 텍스트 제거<br>
+• 각 단어에 하이라이팅 스타일을 적용해 시각적 구분 제공<br>
 
 보다 자세한 설명은 다음과 같습니다.
 
@@ -243,7 +247,7 @@ const ProtectedRoute = ({ element }) => {
 };
 ```
 
-## 검색 리스트 드래그앤드롭 기능 구현 순서 - [draagable 속성 + useRef]
+## 검색 리스트 드래그앤드롭 기능 구현 순서 - [draggable 속성 + useRef]
 
 ### 마우스 이벤트 처리
 
@@ -251,9 +255,9 @@ const ProtectedRoute = ({ element }) => {
 - `mousemove` (마우스 이동): 요소로 드래그하는 동안 추적합니다.
 - `mosueup` (마우스 버튼 떼기): 마우스를 놓을 때 발생하며, 드래그가 끝나는 시점을 추적합니다.
 
-### 마우스 이벤트 속성 draagable
+### 마우스 이벤트 속성 draggable
 
-- draagable는 `true`인 값은 대표적으로 `<a>` 태그가 있고 반면에 `<span>`태그는 불가합니다.
+- draggable는 `true`인 값은 대표적으로 `<a>` 태그가 있고 반면에 `<span>`태그는 불가합니다.
 
 ### onDragEnter / onDragStart / dragPosition 속성이란?
 
@@ -345,7 +349,8 @@ if (request.message === "Get user authentication") {
 
 - ### 김소연
 
-  팀 프로젝트를 진행하면서 좋은 팀원들을 만나 협업 능력을 기를 좋은 기회였습니다. 서로 중요하게 여기는 부분이 달랐기 때문에, 의견을 효율적으로 공유하는 데 노력을 쏟았습니다.
+  팀 프로젝트를 진행하면서 좋은 팀원들을 만나 협업 능력을 기를 좋은 기회였습니다.<br>
+  서로 중요하게 여기는 부분이 달랐기 때문에, 의견을 효율적으로 공유하는 데 노력을 쏟았습니다.
 
   어필하기 위한 근거는 예시 코드만 한 것이 없다는 것을 체감한 이후에는 실제로 jsbin으로 예시 코드를 작성해서 시연하기도 하고, 건강한 피드백을 주고받기 위해 서로를 믿고 각자 돌아가면서 솔직하게 느낀 점을 오픈하기도 했습니다. 또 모두의 생각을 통일시키기 위해 어휘와 핵심 기능을 확실히 동기화하는 작업도 중요하다는 것을 깨닫기도 했습니다.
 
@@ -353,11 +358,11 @@ if (request.message === "Get user authentication") {
 
 - ### 김연주
 
-  팀 프로젝트를 처음 진행하면서 0부터 1까지의 선택의 연속이었습니다.
+  팀 프로젝트를 처음 진행하면서 0부터 1까지의 선택의 연속이었습니다.<br>
   아이디어 선정부터 개발까지 개개인의 의견과 역량이 다르기에 중심을 잡고 나아간다는 것이 쉽지 않았습니다.
 
-  그럼에도 불구하고 초반에는 의견 조율에서 어려움이 있었지만, 프로젝트가 진행됨에 따라 서로의 성향과 니즈를 이해하고 도와주며,
-  수많은 회의를 통해 타협점을 찾아 결론을 내게 되었습니다.
+  그럼에도 불구하고 초반에는 의견 조율에서 어려움이 있었지만, 프로젝트가 진행됨에 따라 서로의 성향과 니즈를 이해하고 도와주며,<br>
+  수많은 회의를 통해 타협점을 찾아 결론을 내게 되었습니다.<br>
   그리하여 후반부에는 팀워크가 잘 맞아 작업 속도도 향상되었고, 진정한 팀이 되었다고 느낄 수 있었습니다.
 
   3주간의 시간동안 육각형의 팀원분들과 함께 작업하게 되어 뜻깊었고 협업을 진행하며 의사소통의 중요성을 깨닫고 좋은 경험이 되었다고 생각합니다.
